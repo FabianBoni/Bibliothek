@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="kundeliste" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.kundenverwaltungController">
+   <top>
+      <Pane prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="51.0" fitWidth="83.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/standalonelogo.png" />
+               </image>
+            </ImageView>
+            <Separator layoutY="58.0" prefHeight="0.0" prefWidth="600.0" style="-fx-background-color: black;" />
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <ListView fx:id="kundenliste" prefHeight="339.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <Pane prefHeight="339.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="usericon" fitHeight="92.0" fitWidth="127.0" layoutX="131.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../img/user.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lnachname" layoutX="60.0" layoutY="136.0" text="Nachname: " visible="false">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lvorname" layoutX="60.0" layoutY="163.0" text="Vorname:" visible="false">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lemail" layoutX="60.0" layoutY="223.0" text="EMail:" visible="false">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lgeburtsdatum" layoutX="60.0" layoutY="196.0" text="Geburtsdatum:" visible="false">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nachname" layoutX="197.0" layoutY="136.0" text="VALUE" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="vorname" layoutX="197.0" layoutY="163.0" text="VALUE" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="geburtsdatum" layoutX="197.0" layoutY="196.0" text="VALUE" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="197.0" layoutY="223.0" text="VALUE" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
