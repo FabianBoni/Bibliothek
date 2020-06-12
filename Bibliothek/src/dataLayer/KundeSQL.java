@@ -8,19 +8,28 @@
  */
 package dataLayer;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class KundeSQL {
 
-	private static int ID;
-	private static int Kundennummer;
-	private static String Nachname;
+	private int ID;
+	private int Kundennummer;
+	private String Nachname;
 	private String Vorname;
-	private static String Geburtsdatum;
-	private static String EMail;
-	private static String Passwort;
-	private static Connection con;
-	private static int count;
+	private String Geburtsdatum;
+	private String EMail;
+	private String Passwort;
+	private Connection con;
+	private int count;
+	private Properties prob = new Properties();
+
+	public void loadProperties() throws FileNotFoundException, IOException {
+		prob.load(new FileInputStream("C:\\Users\\fabud\\Desktop\\Bibliothek\\Config Data\\credentials.properties\\"));
+	}
 
 	/**
 	 * Diese Methode holt alle erforderlichen Informationen eines Kunden aus der
@@ -32,14 +41,17 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void getKunde(int a) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection(
-				"jdbc:mysql://192.168.1.139:3306/Bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"admin", "Lb18.admin");
+	public void getKunde(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		loadProperties();
+		Class.forName("org.postgresql.Driver");
+		con = DriverManager.getConnection("jdbc:postgresql://" + prob.getProperty("host") + "/"
+				+ prob.getProperty("database") + "?user=" + prob.getProperty("username") + "&password="
+				+ prob.getProperty("password") + "&ssl=org.postgresql.ssl.DefaultJavaSSLFactory");
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from Kunde where ID = " + a);
+		ResultSet rs = stmt.executeQuery("select * from \"Kunde\" where \"Kundennummer\" = " + a);
 		while (rs.next()) {
 			ID = rs.getInt(1);
 			Nachname = rs.getString(2);
@@ -59,15 +71,20 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void checkPassword(int Kundennummer) throws SQLException, ClassNotFoundException {
-		con = DriverManager.getConnection(
-				"jdbc:mysql://192.168.1.139:3306/Bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"admin", "Lb18.admin");
+	public void checkPassword(int Kundennummer)
+			throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+		loadProperties();
+		Class.forName("org.postgresql.Driver");
+		con = DriverManager.getConnection("jdbc:postgresql://" + prob.getProperty("host") + "/"
+				+ prob.getProperty("database") + "?user=" + prob.getProperty("username") + "&password="
+				+ prob.getProperty("password") + "&ssl=org.postgresql.ssl.DefaultJavaSSLFactory");
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from Kunde where Kundennummer = " + Kundennummer);
+		ResultSet rs = stmt.executeQuery("select * from  \"Kunde\" where \"Kundennummer\" = " + Kundennummer);
 		while (rs.next()) {
-			KundeSQL.Passwort = rs.getString(6);
+			this.Passwort = rs.getString(6);
 		}
 		con.close();
 	}
@@ -81,15 +98,21 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void checkKundennummer(int Kundennummer) throws SQLException, ClassNotFoundException {
-		con = DriverManager.getConnection(
-				"jdbc:mysql://192.168.1.139:3306/Bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"admin", "Lb18.admin");
+	public void checkKundennummer(int Kundennummer)
+
+			throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+		loadProperties();
+		Class.forName("org.postgresql.Driver");
+		con = DriverManager.getConnection("jdbc:postgresql://" + prob.getProperty("host") + "/"
+				+ prob.getProperty("database") + "?user=" + prob.getProperty("username") + "&password="
+				+ prob.getProperty("password") + "&ssl=org.postgresql.ssl.DefaultJavaSSLFactory");
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from Kunde where Kundennummer = " + Kundennummer);
+		ResultSet rs = stmt.executeQuery("select * from \"Kunde\" where \"Kundennummer\" = " + Kundennummer);
 		while (rs.next()) {
-			KundeSQL.Kundennummer = rs.getInt(7);
+			this.Kundennummer = rs.getInt(7);
 		}
 		con.close();
 	}
@@ -101,13 +124,17 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void checkRows() throws SQLException, ClassNotFoundException {
-		con = DriverManager.getConnection(
-				"jdbc:mysql://192.168.1.139:3306/Bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"admin", "Lb18.admin");
+	public void checkRows() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+		loadProperties();
+		Class.forName("org.postgresql.Driver");
+		con = DriverManager.getConnection("jdbc:postgresql://" + prob.getProperty("host") + "/"
+				+ prob.getProperty("database") + "?user=" + prob.getProperty("username") + "&password="
+				+ prob.getProperty("password") + "&ssl=org.postgresql.ssl.DefaultJavaSSLFactory");
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select count(*) from Kunde");
+		ResultSet rs = stmt.executeQuery("select count(*) from \"Kunde\"");
 		if (rs.next()) {
 			count = rs.getInt(1);
 		}
@@ -119,8 +146,8 @@ public class KundeSQL {
 	 * 
 	 * @return
 	 */
-	public static String getCheckedPasswort() {
-		return KundeSQL.Passwort;
+	public String getCheckedPasswort() {
+		return this.Passwort;
 	}
 
 	/**
@@ -128,8 +155,8 @@ public class KundeSQL {
 	 * 
 	 * @return
 	 */
-	public static int getCheckedKundennummer() {
-		return KundeSQL.Kundennummer;
+	public int getCheckedKundennummer() {
+		return this.Kundennummer;
 	}
 
 	/**
@@ -142,9 +169,12 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public int getID(int a) throws ClassNotFoundException, SQLException {
+	public int getID(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
+		System.out.println(a);
 		return ID;
 	}
 
@@ -158,8 +188,10 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getNachname(int a) throws ClassNotFoundException, SQLException {
+	public String getNachname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
 		return Nachname;
 	}
@@ -174,8 +206,10 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getVorname(int a) throws ClassNotFoundException, SQLException {
+	public String getVorname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
 		return Vorname;
 	}
@@ -190,8 +224,11 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getGeburtsdatum(int a) throws ClassNotFoundException, SQLException {
+	public String getGeburtsdatum(int a)
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
 		return Geburtsdatum;
 	}
@@ -206,8 +243,10 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getEMail(int a) throws ClassNotFoundException, SQLException {
+	public String getEMail(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
 		return EMail;
 	}
@@ -222,10 +261,12 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public int getKundenNummer(int a) throws ClassNotFoundException, SQLException {
+	public int getKundenNummer(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		getKunde(a);
-		return Kundennummer;
+		return this.Kundennummer;
 	}
 
 	/**
@@ -238,9 +279,11 @@ public class KundeSQL {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static int getRows() throws ClassNotFoundException, SQLException {
+	public int getRows() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		checkRows();
-		return count;
+		return this.count;
 	}
 }

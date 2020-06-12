@@ -7,6 +7,8 @@
  */
 package GUI;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -44,8 +46,8 @@ public class kundenverwaltungController implements Initializable {
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			this.count = Kunde.checkRows();
-		} catch (ClassNotFoundException | SQLException e) {
+			this.count = k.checkRows();
+		} catch (ClassNotFoundException | SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -58,6 +60,12 @@ public class kundenverwaltungController implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -73,6 +81,12 @@ public class kundenverwaltungController implements Initializable {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
@@ -86,8 +100,10 @@ public class kundenverwaltungController implements Initializable {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public void showKunden(int index) throws ClassNotFoundException, SQLException {
+	public void showKunden(int index) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		vorname.setText(k.getVorname(index));
 		nachname.setText(k.getNachname(index));
 		geburtsdatum.setText(k.getGeburtsdatum(index));

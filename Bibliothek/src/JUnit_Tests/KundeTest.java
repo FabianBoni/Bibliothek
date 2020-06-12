@@ -2,6 +2,8 @@ package JUnit_Tests;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,7 @@ class KundeTest {
 	int id, kundennummer;
 
 	@Test
-	void testSetNachname() throws ClassNotFoundException, SQLException {
+	void testSetNachname() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		int a = 1;
 		assertNotNull("Success!", ksql.getNachname(a));
 		this.nachname = ksql.getNachname(a);
@@ -27,7 +29,7 @@ class KundeTest {
 	}
 
 	@Test
-	void testSetVorname() throws ClassNotFoundException, SQLException {
+	void testSetVorname() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		int a = 1;
 		assertNotNull("Success!", ksql.getVorname(a));
 		this.vorname = ksql.getVorname(a);
@@ -39,7 +41,7 @@ class KundeTest {
 	}
 
 	@Test
-	void testSetGeburtsdatum() throws ClassNotFoundException, SQLException {
+	void testSetGeburtsdatum() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		int a = 1;
 		assertNotNull("Success!", ksql.getGeburtsdatum(a));
 		this.geburtsdatum = ksql.getGeburtsdatum(a);
@@ -51,7 +53,7 @@ class KundeTest {
 	}
 
 	@Test
-	void testSetEMail() throws ClassNotFoundException, SQLException {
+	void testSetEMail() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		int a = 1;
 		assertNotNull("Success!", ksql.getEMail(a));
 		this.email = ksql.getEMail(a);
@@ -63,7 +65,7 @@ class KundeTest {
 	}
 
 	@Test
-	void testSetID() throws ClassNotFoundException, SQLException {
+	void testSetID() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		int a = 1;
 		assertNotNull("Success!", ksql.getID(a));
 		this.id = ksql.getID(a);

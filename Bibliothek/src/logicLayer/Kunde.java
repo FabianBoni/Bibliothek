@@ -1,12 +1,14 @@
 package logicLayer;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import dataLayer.KundeSQL;
 
 public class Kunde {
-	private static int ID;
-	private static String Nachname, Geburtsdatum, EMail;
+	private int ID;
+	private String Nachname, Geburtsdatum, EMail;
 	private String Vorname;
 	private KundeSQL ksql = new KundeSQL();
 
@@ -18,10 +20,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
 
-	public void setNachname(int a) throws ClassNotFoundException, SQLException {
-		Kunde.Nachname = ksql.getNachname(a);
+	public void setNachname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		this.Nachname = ksql.getNachname(a);
 	}
 
 	/**
@@ -32,10 +36,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getNachname(int a) throws ClassNotFoundException, SQLException {
+	public String getNachname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		setNachname(a);
-		return Nachname;
+		return this.Nachname;
 	}
 
 	/**
@@ -46,8 +52,10 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void setVorname(int a) throws ClassNotFoundException, SQLException {
+	public void setVorname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		this.Vorname = ksql.getVorname(a);
 	}
 
@@ -59,10 +67,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getVorname(int a) throws ClassNotFoundException, SQLException {
+	public String getVorname(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		setVorname(a);
-		return Vorname;
+		return this.Vorname;
 	}
 
 	/**
@@ -73,9 +83,11 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void setGeburtsdatum(int a) throws ClassNotFoundException, SQLException {
-		Kunde.Geburtsdatum = ksql.getGeburtsdatum(a);
+	public void setGeburtsdatum(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		this.Geburtsdatum = ksql.getGeburtsdatum(a);
 	}
 
 	/**
@@ -86,10 +98,13 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getGeburtsdatum(int a) throws ClassNotFoundException, SQLException {
+	public String getGeburtsdatum(int a)
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		setGeburtsdatum(a);
-		return Geburtsdatum;
+		return this.Geburtsdatum;
 	}
 
 	/**
@@ -100,9 +115,11 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void setEMail(int a) throws ClassNotFoundException, SQLException {
-		Kunde.EMail = ksql.getEMail(a);
+	public void setEMail(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		this.EMail = ksql.getEMail(a);
 	}
 
 	/**
@@ -113,10 +130,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public String getEMail(int a) throws ClassNotFoundException, SQLException {
+	public String getEMail(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		setEMail(a);
-		return EMail;
+		return this.EMail;
 	}
 
 	/**
@@ -127,9 +146,11 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void setID(int a) throws ClassNotFoundException, SQLException {
-		Kunde.ID = ksql.getID(a);
+	public void setID(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		this.ID = ksql.getID(a);
 	}
 
 	/**
@@ -140,10 +161,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public int getID(int a) throws ClassNotFoundException, SQLException {
+	public int getID(int a) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		setID(a);
-		return ID;
+		return this.ID;
 	}
 
 	/**
@@ -155,9 +178,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void checkPassword(int Kundennummer) throws SQLException, ClassNotFoundException {
-		KundeSQL.checkPassword(Kundennummer);
+	public void checkPassword(int Kundennummer)
+			throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+		ksql.checkPassword(Kundennummer);
 	}
 
 	/**
@@ -166,8 +192,8 @@ public class Kunde {
 	 * 
 	 * @return gibt den Wert des überprüften Passworts zurück.
 	 */
-	public static String getPasswort() {
-		return KundeSQL.getCheckedPasswort();
+	public String getPasswort() {
+		return ksql.getCheckedPasswort();
 	}
 
 	/**
@@ -178,9 +204,12 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void checkKundennummer(int Kundennummer) throws SQLException, ClassNotFoundException {
-		KundeSQL.checkKundennummer(Kundennummer);
+	public void checkKundennummer(int Kundennummer)
+			throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+		ksql.checkKundennummer(Kundennummer);
 	}
 
 	/**
@@ -189,8 +218,8 @@ public class Kunde {
 	 * 
 	 * @return gibt die überprüfte Kundennummer zurück.
 	 */
-	public static int getKundennummer() {
-		return KundeSQL.getCheckedKundennummer();
+	public int getKundennummer() {
+		return ksql.getCheckedKundennummer();
 	}
 
 	/**
@@ -201,8 +230,10 @@ public class Kunde {
 	 *                                dem jdbc-Treiber nicht gefunden wird.
 	 * @throws SQLException           Zeigt ein Fehlercode bei einer fehlerhaften
 	 *                                Datenbankabfrage an.
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static int checkRows() throws ClassNotFoundException, SQLException {
-		return KundeSQL.getRows();
+	public int checkRows() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		return ksql.getRows();
 	}
 }

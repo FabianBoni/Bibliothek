@@ -37,6 +37,8 @@ public class welcomeController {
 
 	@FXML
 	private static Stage stage;
+	
+	private Kunde k = new Kunde();
 
 	/**
 	 * Diese Methode überprüft die eingegebene Kundennummer sowie das eingegebene
@@ -51,12 +53,13 @@ public class welcomeController {
 	 */
 	public void login() throws SQLException, ClassNotFoundException, IOException {
 		int knummer = Integer.parseInt(kundennummer.getText());
-		Kunde.checkPassword(knummer);
-		Kunde.checkKundennummer(knummer);
+		k.checkPassword(knummer);
+		k.checkKundennummer(knummer);
+		
+		String rpasswort = k.getPasswort().replace(" ", "");
 
-		if (Kunde.getKundennummer() != 0) {
-
-			if (Kunde.getPasswort().equals(passwort.getText())) {
+		if (k.getKundennummer() != 0) {
+			if (passwort.getText().equals(rpasswort)) {
 				kundenVerwaltung(stage);
 			} else {
 				notice.setVisible(true);
